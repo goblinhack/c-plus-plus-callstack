@@ -1,22 +1,10 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <algorithm>
 #include <stdio.h>
 
-/*
- * Convert function and line number into a single string for debugging.
- */
-#define CLOG_STRINGIFY(x)   #x
-#define CLOG_TO_STRING(x)   CLOG_STRINGIFY(x)
-
-/*
- * __FUNCTION__ is not a preprocessor directive so we can't convert it into a
- * string
- */
-#define CLOG_AT  __FILE__, __PRETTY_FUNCTION__, __LINE__
-
-#define LOG_CALL tracer_t __my_tracer(CLOG_AT);
+#undef _ 
+#define _ tracer_t __my_tracer(__FILE__, __PRETTY_FUNCTION__, __LINE__);
 
 struct callframe {
     const char *const file;
@@ -31,20 +19,26 @@ public:
 
     void dump(void);
 
+    /*
+     * Did not use stack<> as it has no iterators
+     * */
     std::vector<struct callframe> my_stack;
 };
 
-#ifdef __MAIN__
+#ifdef __CALLSTACK_MAIN__
 thread_local class callstack global_callstack;
 #else
 extern thread_local class callstack global_callstack;
 #endif
 
 struct tracer_t {
-    tracer_t (const char *const file, const char *const func, const unsigned int line) :
+    tracer_t (const char *const file, 
+              const char *const func, 
+              const unsigned int line) :
               file(file), func(func), line(line)
     {
         callframe c = { file, func, line };
+
         global_callstack.my_stack.push_back(c);
     }
 
@@ -57,6 +51,8 @@ struct tracer_t {
     std::string func;
     unsigned int line;
 };
+
+#define CALLSTACK_DUMP global_callstack.dump
 
 void callstack::dump (void) 
 {
