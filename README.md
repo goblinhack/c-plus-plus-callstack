@@ -10,23 +10,26 @@ of a function (a bit of sedding can do this - reach out to me if you cannot
 do this).
 
 e.g.:
+```
         void my_function (void)
         {_
           // rest of code
         }
-
-It should be thread safe as thread local storage is maintained for the callstack.
+```
 
 Call CALLSTACK_DUMP() at any time to dump the current callstack.
 
 Just do 
 
-  make
-  ./callstack 
+```
+make
+./callstack 
 
-  Stack dump:
-  (stack) 1 main.cpp void foo3(int, int), line 7
-  (stack) 2 main.cpp void foo2(int), line 12
-  (stack) 3 main.cpp void foo1(), line 17
-  (stack) 4 main.cpp int main(int32_t, char **), line 22
+Stack dump:
+(stack) 1 main.cpp void foo3(int, int), line 7
+(stack) 2 main.cpp void foo2(int), line 12
+(stack) 3 main.cpp void foo1(), line 17
+(stack) 4 main.cpp int main(int32_t, char **), line 22
+```
 
+NOTE: It should be thread safe as thread local storage is maintained for the callstack.
