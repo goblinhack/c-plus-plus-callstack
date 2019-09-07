@@ -45,11 +45,11 @@ To build:
 Example output:
 
 <pre>
-Stack dump:
-(stack) 1 main.cpp void foo3(int, int), line 7
-(stack) 2 main.cpp void foo2(int), line 12
-(stack) 3 main.cpp void foo1(), line 17
-(stack) 4 main.cpp int main(int32_t, char **), line 22
+    Stack dump:
+    (stack) 1 main.cpp void foo3(int, int), line 7
+    (stack) 2 main.cpp void foo2(int), line 12
+    (stack) 3 main.cpp void foo1(), line 17
+    (stack) 4 main.cpp int main(int32_t, char **), line 22
 </pre>
 
 NOTE: It should be thread safe as thread local storage is maintained for the callstack.
