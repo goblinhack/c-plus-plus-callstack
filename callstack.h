@@ -34,8 +34,7 @@ extern thread_local class callstack global_callstack;
 struct tracer_t {
     tracer_t (const char *const file, 
               const char *const func, 
-              const unsigned int line) :
-              file(file), func(func), line(line)
+              const unsigned int line)
     {
         callframe c = { file, func, line };
 
@@ -46,10 +45,6 @@ struct tracer_t {
     {
         global_callstack.my_stack.pop_back();
     }
-
-    std::string file;
-    std::string func;
-    unsigned int line;
 };
 
 #define CALLSTACK_DUMP global_callstack.dump

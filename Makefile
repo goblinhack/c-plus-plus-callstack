@@ -19,5 +19,8 @@ $(OBJDIR)/%.o: %.cpp
 $(NAME): $(MY_OBJECTS)
 	$(CC) $(MY_OBJECTS) $(LDLIBS) -o $(NAME)
 
+clean:
+	/bin/rm main.o
+
 all: $(NAME) 
 
