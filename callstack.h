@@ -21,7 +21,7 @@ public:
 
     /*
      * Did not use stack<> as it has no iterators
-     * */
+     */
     std::vector<struct callframe> my_stack;
 };
 
@@ -34,15 +34,12 @@ extern thread_local class callstack global_callstack;
 struct tracer_t {
     tracer_t (const char *const file, 
               const char *const func, 
-              const unsigned int line)
-    {
+              const unsigned int line) {
         callframe c = { file, func, line };
-
         global_callstack.my_stack.push_back(c);
     }
 
-    ~tracer_t()
-    {
+    ~tracer_t() {
         global_callstack.my_stack.pop_back();
     }
 };
@@ -52,7 +49,6 @@ struct tracer_t {
 void callstack::dump (void) 
 {
     int i = 1;
-
     fprintf(stderr, "Stack dump:\n");
     for (auto iter = my_stack.rbegin(); iter != my_stack.rend(); iter++) {
         fprintf(stderr, "(stack) %d %s %s, line %u\n", i++, iter->file, iter->func, iter->line);
