@@ -10,16 +10,16 @@ The only change you need is to include callstack.h and add an underscore
 at the beginning of a function (a bit of sedding can do this - reach out 
 to me if you cannot do this).
 
-<pre>
+```C++
         void my_function (void)
-        {_
+        {_                     // <<---- yes, add "_" to trace this function
           // rest of code
         }
-</pre>
+```
 
 you can even trace inside functions
 
-<pre>
+```C++
         void my_function (void)
         {_
           // rest of code
@@ -27,13 +27,13 @@ you can even trace inside functions
           // more code
          _
         }
-</pre>
+```
 
 Call the following anytime to dump the current stack:
 
-<pre>
+```C++
     CALLSTACK_DUMP();
-</pre>
+```
 
 To build:
 
