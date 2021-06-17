@@ -1,6 +1,6 @@
-COMPILER_FLAGS=-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall  -pipe -Os -arch x86_64 -g -ggdb3 -O2 
+COMPILER_FLAGS=-DNDEBUG -Wall -g -ggdb3
     
-COMPILER_WARNINGS=-x c++ -Wall -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -std=c++11 
+COMPILER_WARNINGS=-x c++ -Wall -std=c++11 
 CC=g++
     
 LDLIBS=-rdynamic
